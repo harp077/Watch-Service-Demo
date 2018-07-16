@@ -10,6 +10,7 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 
 @Configuration
@@ -17,22 +18,8 @@ import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 //@PropertySource(value = {"file:cfg/ws-test.properties"})
 @PropertySource(value = {"classpath:cfg/ws-test.properties"})
 @EnableAsync
-//@EnableScheduling
-//@EnableTransactionManagement
-//@EnableLoadTimeWeaving
-//@EnableCaching
-//@EnableWebMvc
-//@Import(Ch4Configuration.class)
-//@ImportResource("classpath:/beans-tx.xml")
+@EnableScheduling
 public class AppContext {
-    
-    /*@Value("${hash}")
-    private String HashTip; 
-    
-    @PostConstruct
-    public void checkValue(){
-            System.out.println(HashTip);        
-    }*/
     
     @Bean(name = "loggerBean")
     public Logger loggerBean() {
@@ -53,28 +40,5 @@ public class AppContext {
     public TaskExecutor taskExecutor() {
         return new SimpleAsyncTaskExecutor();
     }
-    
-    /*@Bean
-    public TaskExecutor taskExecutor() {
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(99);
-        executor.setMaxPoolSize(111);
-        executor.setQueueCapacity(99);
-        executor.setThreadNamePrefix("async_task_executor");
-        executor.setAllowCoreThreadTimeOut(true);
-        executor.setKeepAliveSeconds(11);
-        executor.initialize();
-        return executor;
-    }*/
-    
-    /*@Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        PropertySourcesPlaceholderConfigurer pspc
-                = new PropertySourcesPlaceholderConfigurer();
-        Resource[] resources = new ClassPathResource[]{new ClassPathResource("hofat.properties")};
-        pspc.setLocations(resources);
-        pspc.setIgnoreUnresolvablePlaceholders(true);
-        return pspc;
-    }  */  
-    
+   
 }

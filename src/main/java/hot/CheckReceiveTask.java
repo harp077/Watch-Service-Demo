@@ -37,10 +37,7 @@ public class CheckReceiveTask {
 
     @PostConstruct
     public void afterBirn() {
-        //receiveTaskChecker();
         new File(folder).mkdirs();
-        /*Path tmpDir=Paths.get(folder);
-        Files.createDirectory(tmpDir);*/
     }
 
     // async-метод для получения задач
@@ -62,13 +59,11 @@ public class CheckReceiveTask {
                         // запускаем выполнение нужной задачи
                         Date dt = new Date();
                         area.append(dt.getHours()+":"+dt.getMinutes()+":"+dt.getSeconds()+" = File task created in " + folder + "\n");
-                        //JOptionPane.showMessageDialog(null, "Task1 running !");
                     }
                     if (event.kind() == StandardWatchEventKinds.ENTRY_DELETE) {
                         // запускаем выполнение нужной задачи
                         Date dt = new Date();
                         area.append(dt.getHours()+":"+dt.getMinutes()+":"+dt.getSeconds()+" = File task deleted in " + folder + "\n");
-                        //JOptionPane.showMessageDialog(null, "Task1 running !");
                     }                    
                 }
                 key.reset();
