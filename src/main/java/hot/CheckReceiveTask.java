@@ -48,7 +48,9 @@ public class CheckReceiveTask {
             WatchService watcher = FileSystems.getDefault().newWatchService();
             // сканируем на изменения соответствующий каталог для задачи номер 1:
             Path dir = FileSystems.getDefault().getPath(folder);
-            WatchKey key = dir.register(watcher, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE);
+            WatchKey key = dir.register(watcher, 
+                    StandardWatchEventKinds.ENTRY_CREATE, 
+                    StandardWatchEventKinds.ENTRY_DELETE);
             // Экземпляры WatchKey  потокобезопасны.
             while (true) {
                 key = watcher.take(); // блокирует поток пока не появится событие
